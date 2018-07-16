@@ -1,0 +1,35 @@
+<h2>Welcome, Human Resources Manager</h2>
+<form action="/hr-home" method="post">
+    <label for="new_division">Create a New Division in the Company</label>
+    <input type="text" id="new_division" name="new_division">
+    <button class="btn btn-primary" type="submit">Add Division</button>
+</form>
+<form action="/hr-home" method="post">
+  <div class="form-group">
+    <label for="add_employee">Create a New Company Employee</label>
+    <input type="text" id="add_employee" name="add_employee">
+    <button class="btn btn-primary" type="submit">Add Employee</button>
+  </div>
+</form>
+
+<h3>Divisions in the Company</h3>
+<% if @divisions.empty? %>
+  <h4>There are no created divisions currently</h4>
+<% else %>
+  <% @divisions.each do |division| %>
+    <ul>
+      <li><a href="/hr-home/<%= division.name %>"><%= division.name %></a></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<h3>Employees in the Company</h3>
+<% if @employees.empty? %>
+  <h4>There are no created employees currently</h4>
+<% else %>
+  <% @employees.each do |employee| %>
+    <ul>
+      <li><a href="/hr-home/<%= employee.id %>"><%= employee.name %></a></li>
+    </ul>
+  <% end %>
+<% end %>
