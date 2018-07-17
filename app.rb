@@ -19,8 +19,8 @@ end
 
 post('/hr-home') do
   if params.has_key?('new_division')
-    division_name = params.fetch("new_division")
-    @division = Division.create({:name => division_name})
+    division_title = params.fetch("new_division")
+    @division = Division.create({:title => division_title})
     @divisions = Division.all
     @employees = Employee.all
   else
@@ -32,21 +32,20 @@ post('/hr-home') do
   erb(:hr_home)
 end
 
-get('/hr-home/:name') do
-  binding.pry
-  @division = Division.find_by(name: params.fetch("name"))
+get('/hr-home/:title') do
+  @division = Division.find_by(title: params.fetch("title"))
   @divisions = Division.all
   erb(:edit_division)
 end
 
-get('/hr-home/:id') do
-
+get('/hr-home/employee/:id') do
   @employee = Employee.find(params.fetch('id').to_i)
   @employees = Employee.all
+  binding.pry
   erb(:edit_employee)
 end
 
-patch('/hr-home/Employee-:id') do
+patch('/hr-home/employee/:id') do
   @employee = Employee.update_attributes(:name => params.fetch('update_employee'))
   erb(:edit_employee)
 end

@@ -1,6 +1,6 @@
 <h2>Employee Information</h2>
 <h3>Update the Employee</h3>
-<form action="/hr-home/<%= @employee.id %>" method="post">
+<form action="/hr-home/employee/<%= @employee.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="update_employee">Update the Name of the Employee</label>
   <input type="text" name="update_employee">
